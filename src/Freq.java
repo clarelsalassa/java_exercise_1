@@ -22,19 +22,33 @@ public class Freq implements Command{
                     .split(" ");
             var res = Arrays.stream(tableau).
                     collect(Collectors.groupingBy(e->e, Collectors.counting()));
-            var res2 = res.entrySet().stream().
-                    sorted(Comparator.comparing(Map.Entry<String,Long>::getValue).reversed()).limit(3);
+            var res2 = res.entrySet().stream();
+            /*var res2 = res.entrySet().stream().
+                    sorted(Comparator.comparing(Map.Entry<String,Long>::getValue).reversed()).limit(3);*/
             var res3 = res2.collect(Collectors.toList());
-            for (int i = 0; i < res3.size(); i++){
-                if (i == res3.size() - 1){
-                    System.out.printf(res3.get(i).getKey().toString());
+            List<String> list = new ArrayList<String>();
+
+            int r = 0;
+            int x = 3;
+            while (x > 0) {
+                int max = 0;
+                for (int i = 0; i < res3.size(); i++) {
+                    if (res3.get(i).getValue().intValue() > max && !list.contains(res3.get(i).getKey())){
+                        max = res3.get(i).getValue().intValue();
+                        r = i;
+                    }
+                }
+                list.add(res3.get(r).getKey());
+                x -= 1;
+            }
+            for (int i = 0; i < list.size(); i++){
+                if (i == list.size() -1){
+                    System.out.println(list.get(i));
                 }
                 else {
-                    System.out.printf(res3.get(i).getKey().toString() + ' ');
+                    System.out.printf(list.get(i) + " ");
                 }
-
             }
-            System.out.println();
 
         }
         catch (IOException e) {
