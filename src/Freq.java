@@ -26,11 +26,6 @@ public class Freq implements Command{
                     sorted(Comparator.comparing(Map.Entry<String,Long>::getValue).reversed()).limit(3);
             var res3 = res2.collect(Collectors.toList());
 
-            //System.out.println("TEST TEST TEST");
-            /*System.out.printf(res3.get(0).getKey() + " ");
-            System.out.printf(res3.get(2).getKey() + " ");
-            System.out.println(res3.get(1).getKey());*/
-
             for (int i = 0; i < res3.size(); i++){
                 if (i == res3.size() -1){
                     System.out.println(res3.get(i).getKey());
