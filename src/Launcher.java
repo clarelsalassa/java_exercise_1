@@ -16,6 +16,8 @@ public class Launcher {
         Command fibo = new Fibo();
         Command freq = new Freq();
         Command quit = new Quit();
+        Command predict = new Predict();
+        commands.add(predict);
         commands.add(fibo);
         commands.add(freq);
         commands.add(quit);
